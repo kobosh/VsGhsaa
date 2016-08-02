@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Ghsaa.Models.MyEvent>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Recent Events</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (var item in Model) {
+     <div>
+         <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+         <h6>@Html.DisplayFor(modelItem => item.Description)</h6>
+       <label>@item.EventDate.ToShortDateString()</label> &nbsp;
+         @Html.DisplayFor(modelItem=>item.EventTime) <br />
+        
+            @Html.DisplayFor(modelItem => item.Address)<br />
+          
+            @Html.DisplayFor(modelItem => item.Host) <br /> 
+         @Html.ActionLink("Attending", "Attending", new  { id=item.Id})  <br />
+         Who is also going:<label>
+                               @foreach (Ghsaa.Models.Attendee g in item.Attendees)                           {
+                                  @g.Name
+                               }</label>
+        
+     </div>      
+}
+
+

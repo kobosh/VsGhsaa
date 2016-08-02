@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Ghsaa.Models.MyEvent>
+
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Recent Community Events</h2>
+
+<p>
+    Please tell your friends about these events.
+</p>
+
+@foreach (var item in Model) {
+    <div>
+        <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+        @*Host @Html.DisplayFor(modelItem => item.Host)
+            date @Html.DisplayFor(modelItem => item.EventDate.Date) <br />
+    Time            @Html.DisplayFor(modelItem => item.EventTime) <br />
+
+     Address       @Html.DisplayFor(modelItem => item.Address)
+        <p>    @Html.DisplayFor(modelItem => item.Description)</p>*@
+           
+            @Html.ActionLink("Going", "Show", new { id=item.Id }) |
+    </div>
+       
+}
+
+

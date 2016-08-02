@@ -1,0 +1,17 @@
+﻿@model Ghsaa.Models.HNews
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>News</h2>
+
+@if(Model.HoustonFeed!=null)
+{
+<ul>
+    @foreach (var post in Model.HoustonFeed.Items.ToList().Take(5))
+    { 
+    <li> <a href="@post.Links.First().Uri" target="_blank">@post.Title.Text</a></li>
+     } 
+    </ul>
+}
