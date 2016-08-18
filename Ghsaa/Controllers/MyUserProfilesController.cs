@@ -110,7 +110,7 @@ namespace Ghsaa.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                
                 string pic = System.IO.Path.GetFileName(file.FileName);
                 byte[] bytes=null;
                 using (

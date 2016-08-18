@@ -48,9 +48,17 @@
       <HintPath>..\packages\HigLabo.Net.Rss.1.0.0.4\lib\net45\HigLabo.Net.Rss.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=b9a188c8922137c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\HigLabo.Net.1.0.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NodaTime, Version=1.3.0.0, Culture=neutral, PublicKeyToken=4226afe0d9b296d1, processorArchitecture=MSIL">
@@ -194,6 +202,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Migrations\201607130341153_noattendee5.cs" />
     <Compile Include="Migrations\201607130341153_noattendee5.Designer.cs">
       <DependentUpon>201607130341153_noattendee5.cs</DependentUpon>
@@ -230,6 +239,26 @@
     <Compile Include="Migrations\201607160203386_new6.Designer.cs">
       <DependentUpon>201607160203386_new6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608092243150_videos.cs" />
+    <Compile Include="Migrations\201608092243150_videos.Designer.cs">
+      <DependentUpon>201608092243150_videos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608092320127_videos2.cs" />
+    <Compile Include="Migrations\201608092320127_videos2.Designer.cs">
+      <DependentUpon>201608092320127_videos2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608121255289_video3.cs" />
+    <Compile Include="Migrations\201608121255289_video3.Designer.cs">
+      <DependentUpon>201608121255289_video3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608180111323_video31.cs" />
+    <Compile Include="Migrations\201608180111323_video31.Designer.cs">
+      <DependentUpon>201608180111323_video31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608181643304_video5.cs" />
+    <Compile Include="Migrations\201608181643304_video5.Designer.cs">
+      <DependentUpon>201608181643304_video5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\HNews.cs" />
@@ -238,6 +267,7 @@
     <Compile Include="Models\MyEvent.cs" />
     <Compile Include="Models\MyUserProfile.cs" />
     <Compile Include="Models\MyUserProfileViewModel.cs" />
+    <Compile Include="Models\Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -301,6 +331,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.1.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
     <Content Include="Scripts\jquery.timepicker.js" />
     <Content Include="Scripts\jquery.timepicker.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -312,6 +344,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="StyleSheet1.css" />
+    <Content Include="Uploads\big_buck_bunny.mp4" />
+    <Content Include="Uploads\Wildlife.wmv" />
+    <Content Include="VideoXml\Videos.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -375,6 +410,12 @@
     <Content Include="Views\MyUserProfiles\Edit.cshtml" />
     <Content Include="Views\MyUserProfiles\Index.cshtml" />
     <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Home\UploadVideos.cshtml" />
+    <Content Include="Views\Home\UploadVideo.cshtml" />
+    <Content Include="Views\Home\test.cshtml" />
+    <Content Include="Views\Home\Video.cshtml" />
+    <Content Include="Views\Home\DiplayVideos.cshtml" />
+    <Content Include="Views\Home\HubTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -413,6 +454,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607160203386_new6.resx">
       <DependentUpon>201607160203386_new6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608092243150_videos.resx">
+      <DependentUpon>201608092243150_videos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608092320127_videos2.resx">
+      <DependentUpon>201608092320127_videos2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608121255289_video3.resx">
+      <DependentUpon>201608121255289_video3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608180111323_video31.resx">
+      <DependentUpon>201608180111323_video31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608181643304_video5.resx">
+      <DependentUpon>201608181643304_video5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

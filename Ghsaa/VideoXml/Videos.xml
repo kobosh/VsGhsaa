@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Videos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Video>
+    <Title>duck</Title>
+    <Description>funny video</Description>
+    <UploadDate>Friday, August 12, 2016</UploadDate>
+    <Picture>big_buck_bunny.mp4</Picture>
+    <ContentType>video/mp4</ContentType>
+  </Video>
+  <Video>
+    <Title>wild life</Title>
+    <Description>nature video</Description>
+    <UploadDate>Thursday, August 18, 2016</UploadDate>
+    <Picture>Wildlife.wmv</Picture>
+    <ContentType>video/x-ms-wmv</ContentType>
+  </Video>
+</Videos>

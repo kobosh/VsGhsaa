@@ -1,0 +1,36 @@
+﻿@model List<List<string>>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+@*<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DiplayVideos</title>
+</head>
+<body>*@
+    <div> 
+        <ul>
+        @foreach(var m in Model)
+        {
+           <li>
+               <div> @m[0]</div>
+               <div> @m[1]</div>
+               <div> @m[2]</div>
+        <div>       <a href="/Home/test?adrs=@m[3]&t=@m[4]">watch video</a>
+
+               @*<div> <object data="~/uploads/@m[3]" type="@m[4]" width="400" height="300">
+    <param name="src" value="~/uploads/@m[3]">
+    <param name="autoStart" value="0">
+</object>*@
+</div>
+           </li> 
+            
+        }
+            </ul>
+    </div>
+@*</body>
+</html>*@

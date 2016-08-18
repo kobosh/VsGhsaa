@@ -1,0 +1,23 @@
+﻿@model List<string>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>test:</title>
+</head>
+
+<body>
+    <h2>Browser:@Model[2]</h2>
+    @if (Model[2]=="Chrome"&&  Model[1] == "video/x-ms-wmv") {  <div> if video does not play in chrome use Internet Explorer</div>}
+    <object data="~/uploads/@Model[0]" type="@Model[1]" >
+        <param name="src" value="~/uploads/@Model[0]">
+        <param name="autoStart" value="0">
+    </object>
+
+</body>
+</html>
