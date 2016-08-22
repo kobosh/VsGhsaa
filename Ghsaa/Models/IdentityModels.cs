@@ -39,6 +39,12 @@ namespace Ghsaa.Models
         public DbSet<MyEvent> MyEvents { get; set; }
        public DbSet<Attendee> Attendees { get; set; }
      //  public DbSet<Video> Videos { get; set; }
+       public DbSet<Message> Messages { get; set; }
+       public DbSet<Reply> Replies { get; set; }
+       //public static ApplicationDbContext Create()
+       //{
+       //    return new ApplicationDbContext();
+       //}
 
     }
 }

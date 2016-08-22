@@ -7,11 +7,4 @@
     <Picture>big_buck_bunny.mp4</Picture>
     <ContentType>video/mp4</ContentType>
   </Video>
-  <Video>
-    <Title>wild life</Title>
-    <Description>nature video</Description>
-    <UploadDate>Thursday, August 18, 2016</UploadDate>
-    <Picture>Wildlife.wmv</Picture>
-    <ContentType>video/x-ms-wmv</ContentType>
-  </Video>
-</Videos>
+  </Videos>

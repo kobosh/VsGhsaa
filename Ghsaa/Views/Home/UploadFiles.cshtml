@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "UploadFiles";
+}
+
+<h2>Upload Video or Photo File: Step 2</h2>
+<div>
+    <p id="t">@TempData["t"] </p>
+    <p id="d">@TempData["d"]</p>
+    
+</div>
+<div class="container">
+    <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus">
+            </i>
+            <span>
+                Add files...</span>
+                <input id="fileupload" type="file" name="files[]" multiple/>
+                </span>
+                <br />
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        <span class="sr-only">
+                            0% complete </span>
+                            </div>
+                            </div>
+                            <br />
+                            <div class="file_name">
+                               </div>
+                                <br />
+                                <div class="file_type">
+</div>
+                                    <br />
+                                    <div class="file_size">
+                                       </div>
+                                       
+</div>
+<link href="~/Content/mvcfileupload/blueimp/jquery.fileupload.css" rel="stylesheet" />
+<script src="~/Scripts/mvcfileupload/blueimp/jquery.fileupload.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var t = getUrlVars()["t"];
+        var d = getUrlVars()["d"];
+
+       
+		$('#fileupload').fileupload({
+			dataType: 'json',
+			url: '/Home/UploadFiles?t='
+                + t + '&d=' + d,
+			autoUpload: true,
+			done: function (e, data) {
+			    
+				$('.file_name').html(data.result.name);
+				$('.file_type').html(data.result.type);
+				$('.file_size').html(data.result.size);
+			}
+		}).on('fileuploadprogressall', function (e, data) {
+			var progress = parseInt(data.loaded / data.total * 100, 10);
+			$('.progress .progress-bar').css('width', progress + '%');
+		});
+    });
+    // Read a page's GET URL variables and return them as an associative array.
+    function getUrlVars() {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+</script>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Videos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Video>
+    <Title>houston</Title>
+    <Description>Houston areal photo</Description>
+    <UploadDate>Saturday, August 20, 2016</UploadDate>
+    <Picture>houston.jpg</Picture>
+    <ContentType>image/jpeg</ContentType>
+  </Video>
+  <Video>
+    <Title>juba</Title>
+    <Description>juba south sudan</Description>
+    <UploadDate>Saturday, August 20, 2016</UploadDate>
+    <Picture>aerial_juba_south_sudan.jpg</Picture>
+    <ContentType>image/jpeg</ContentType>
+  </Video>
+  <Video>
+    <Title>houston</Title>
+    <Description>Houston areal photo</Description>
+    <UploadDate>Saturday, August 20, 2016</UploadDate>
+    <Picture>houston.jpg</Picture>
+    <ContentType>image/jpeg</ContentType>
+  </Video>
+  <Video>
+    <Title>juba</Title>
+    <Description>juba south sudan</Description>
+    <UploadDate>Saturday, August 20, 2016</UploadDate>
+    <Picture>aerial_juba_south_sudan.jpg</Picture>
+    <ContentType>image/jpeg</ContentType>
+  </Video>
+
+</Videos>

@@ -1,0 +1,18 @@
+﻿@model List<List<string>>
+@{
+    ViewBag.Title = "DiplayPhotos";
+}
+
+<h2>Photo Gallary</h2>
+<div  class="row" >
+    @foreach(var m in Model)
+    {
+        <div class="col-md-4">
+            <img src="~/Uploads/@m[3]"  height="200"  alt="not found" /> <br />
+            @m[0],@m[1]<br />@m[2]
+        </div>
+        
+    }   
+
+</div>
+
