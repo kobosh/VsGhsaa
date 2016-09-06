@@ -1,0 +1,24 @@
+﻿@model List<List<string>>
+@{
+    ViewBag.Title = "DiplayYTVideos";
+}
+
+<h2>Videos</h2>
+<div>
+    <div class="row">
+        @foreach (var m in Model)
+        {
+            <div class="col-sm-4">
+                <div> @m[0]</div>
+                <div> @m[1]</div>
+                <div> @m[2]</div>
+                <div>
+                    <a href="/Home/YTVideos?v=@m[3]&d=@m[4]">watch video</a>
+
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+

@@ -355,6 +355,7 @@
     <Content Include="Images\ghsaaDonate.jpg" />
     <Content Include="Images\ghsaaTrans.jpg" />
     <Content Include="Images\houston.jpg" />
+    <Content Include="Images\logot.png.gif" />
     <Content Include="myStyles\StyleGhsaa.css" />
     <Content Include="VideoXml\Photos.xml" />
     <Content Include="Scripts\bootstrap.js" />
@@ -397,6 +398,7 @@
     <Content Include="Uploads\big_buck_bunny.mp4" />
     <Content Include="Uploads\Wildlife.wmv" />
     <Content Include="VideoXml\Videos.xml" />
+    <Content Include="VideoXml\youtube.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -475,6 +477,11 @@
     <Content Include="Views\Home\DiplayPhotos.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
     <Content Include="Views\Message\Create.cshtml" />
+    <Content Include="Views\Home\Members.cshtml" />
+    <Content Include="Views\Home\YTVideo.cshtml" />
+    <Content Include="Views\Home\DiplayYTVideos.cshtml" />
+    <Content Include="Views\Home\YTVideos.cshtml" />
+    <Content Include="Views\Home\Completed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -40,6 +40,31 @@ namespace Ghsaa.Controllers
          public ActionResult UploadFiles()
         { return View(); }
 
+        public ActionResult YTVideo()
+         {
+             return View();
+         }
+        [HttpPost]
+        public ActionResult YTVideo(YTVideo v)
+        {
+            string path = Server.MapPath("~/VideoXml/youtube.xml");
+            XDocument doc = XDocument.Load(path );
+            XElement[] param ={ new XElement("Title", v.Title), new XElement("Description",v.Description),
+                                        new XElement("UploadDate",  DateTime.Now.ToLongDateString()),
+                                     new XElement("VideoId",v.VideoId),new XElement("Duration",v.Duration)};
+            doc.Root.Add(new XElement("Video", param));
+            doc.Save(path);
+            ModelState.Clear();
+           // return Content("{\"name\":\"" + 
+           //     r[0].Name + "\",\"type\":\"" + r[0].Type +
+           //     "\",\"size\":\"" + string.Format("{0} bytes", r[0].Length) + "\"}", 
+           //     "application/json");     
+            return RedirectToAction("Completed");
+        }
+        public ActionResult Completed()
+        {
+            return View();
+        }
         [HttpPost]
         public ContentResult UploadFiles(string t,string d)
         {
@@ -143,27 +168,7 @@ namespace Ghsaa.Controllers
           //  if (  file.ContentLength>0)//  Request.Files.Count > 0)
             {
              try{ 
-                // string path = AppDomain.CurrentDomain.BaseDirectory + "Uploads/";
-                //string filename = Path.GetFileName(file.FileName);
-                //file.SaveAs(Path.Combine(path, filename));
-                               
-
-            //      v.UploadDate = DateTime.Now;
-            //      v.Picture = file.FileName;// Path.Combine(Server.MapPath("~/Uploads/"), file.FileName);
-            //      v.TypeOfVideo = file.ContentType;
-            //        System.Xml.Serialization.XmlSerializer writer =
-            //new System.Xml.Serialization.XmlSerializer(typeof(Video));
-
-            //        path = Path.Combine(Server.MapPath("~/VideoXml/") , "Videos.xml");
-                 
-            //        XDocument doc = XDocument.Load(path);
-            //        XElement[] param={ new XElement("Title", v.Title), new XElement("Description",v.Description),
-            //                            new XElement("UploadDate",  DateTime.Now.ToLongDateString()),
-            //                         new XElement("Picture",v.Picture),new XElement("ContentType",v.TypeOfVideo)};
-            //        doc.Root.Add(new XElement("Video", param));
-            //        doc.Save(path);
-            //        return Json("File Uploaded Successfully!");
-
+               
                  List<string> Td=new List<string> ();
                  Td.Add (v.Title); Td.Add(v.Description);
                  TempData["t"]=v.Title ;
@@ -226,6 +231,59 @@ namespace Ghsaa.Controllers
 
             }
             return videoListList;
+        }
+public ActionResult YTVideos()
+        {
+
+            return View();
+        }
+       // [HttpPost]
+        public ActionResult DiplayYTVideos()
+        {
+
+            List<List<string>> videos = getYTVideos(true);
+            return View(videos);
+
+        }
+        private List<List<string>> getYTVideos(bool v)
+        {
+            string path = null;
+
+            if (v)
+                path = Path.Combine(Server.MapPath("~/VideoXml/"), "youtube.xml");
+            else { path = Path.Combine(Server.MapPath("~/VideoXml/"), "Photos.xml"); }
+            XDocument doc = XDocument.Load(path);
+            IEnumerable<XElement> videos =
+                from el in doc.Elements()
+                select el;
+var vds = 
+    from r in doc.Descendants("Video")
+     orderby DateTime.Parse(r.Element("UploadDate").Value) descending 
+     select r;
+     
+            List<string> videoList = new List<string>();
+            List<List<string>> videoListList = new List<List<string>>();
+           // var orderedList = doc.Root.Elements();
+
+
+           
+           
+            foreach (var video in vds)// doc.Root.Elements())
+            {
+                videoList = new List<string>();
+                foreach (var c in video.Elements())
+
+                    videoList.Add(c.Value);
+
+                videoListList.Add(videoList);
+
+            }
+            return videoListList;
+        }
+      
+        public ActionResult Members()
+        {
+            return View();
         }
         public ActionResult News()
         {

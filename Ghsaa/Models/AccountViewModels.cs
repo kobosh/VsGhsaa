@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+//using System.Web.Mvc;
 
 namespace Ghsaa.Models
 {
@@ -65,11 +66,14 @@ namespace Ghsaa.Models
 
        
     }
+   //[MetadataType(typeof(UserMetaData))]  
 
     public class RegisterViewModel
     {
    [Required]     
   [Display(Name = "UserID")]
+//  [System.Web.Mvc.Remote("IsUserExists", "Home", ErrorMessage = "User Name already in use")]  //check unique
+
         public string UserID { get; set; }
 
         [Required]
@@ -100,6 +104,12 @@ namespace Ghsaa.Models
 
  
     }
+    //added
+    //class UserMetaData
+    //{
+    //    [System.Web.Mvc.Remote("IsUserExists", "Account", ErrorMessage = "User Name already in use")]
+    //    public string UserID { get; set; }
+    //}  
 
     public class ResetPasswordViewModel
     {

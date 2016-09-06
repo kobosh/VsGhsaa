@@ -28,5 +28,11 @@
     <Picture>aerial_juba_south_sudan.jpg</Picture>
     <ContentType>image/jpeg</ContentType>
   </Video>
-
+  <Video>
+    <Title>undefined</Title>
+    <Description>undefined</Description>
+    <UploadDate>Friday, September 02, 2016</UploadDate>
+    <Picture>Coursera BAXRFT6D96NE (1).pdf</Picture>
+    <ContentType>application/pdf</ContentType>
+  </Video>
 </Videos>

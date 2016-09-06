@@ -10,6 +10,7 @@ using Ghsaa.Models;
 using System.Diagnostics;
 using System.Security.Claims;
 using System.IO;
+using System.Drawing;
 
 namespace Ghsaa.Controllers
 {
@@ -99,6 +100,32 @@ namespace Ghsaa.Controllers
             }
             return View(myUserProfile);
         }
+        
+        public ActionResult Confirm(string ConfirmedEmail)
+        {
+            var id = getCurrentUserId();
+            Debug.WriteLine("User name" + id);
+            //   var name = ApplicationUser.Name;
+            var user = db.Users.SingleOrDefault(u => u.Id == id);
+            var profile = db.userPrfileInfos.Single(p => p.Id == user.userProfile.Id);
+            return RedirectToAction("Edit", "MyUserProfiles", new { id = user.userProfile.Id }); //iew(profile);//db.userPrfileInfo.ToList());
+       
+
+        }
+        //public ActionResult Edit(MyUserProfile myUserProfile
+        //    )
+        //{
+        //    //if (id == null)
+        //    //{
+        //    //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    //}
+        //    //MyUserProfile myUserProfile = db.userPrfileInfos.Find(id);
+        //    if (myUserProfile == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(myUserProfile);
+        //}
 
         // POST: MyUserProfiles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -111,26 +138,56 @@ namespace Ghsaa.Controllers
             if (ModelState.IsValid)
             {
                 
-                string pic = System.IO.Path.GetFileName(file.FileName);
+              //  string pic = System.IO.Path.GetFileName(file.FileName);
                 byte[] bytes=null;
-                using (
-                    Stream inputStream = file.InputStream)
+                if(file!=null&&file.ContentLength>0)
+                    return StreamAndSavePic(myUserProfile, file, ref bytes);
+                else
                 {
-                    MemoryStream memStream = inputStream as MemoryStream;
-                    if(memStream==null)
-                    { memStream = new MemoryStream();
-                    inputStream.CopyTo(memStream);
+                    using (Image image = Image.FromFile(Server.MapPath("~/Images/face.png")))
+                    {
+                        using (MemoryStream m = new MemoryStream())
+                        {
+                            image.Save(m, image.RawFormat);
+                            byte[] imageBytes = m.ToArray();
+
+                            // Convert byte[] to Base64 String
+                            string base64String = Convert.ToBase64String(imageBytes);
+                            string UrlString = string.Format("data:image/png;base64,{0}", base64String);
+                            myUserProfile.Photo = UrlString;
+                            db.Entry(myUserProfile).State = EntityState.Modified;
+                            db.SaveChanges();
+                         //   return View(myUserProfile);//
+                    return         RedirectToAction("Index", "MyUserProfiles");
+
+                        }
                     }
-                    bytes = memStream.ToArray();
-                    string base64String = Convert.ToBase64String(bytes);
-                    string UrlString = string.Format("data:image/png;base64,{0}", base64String);
-                    myUserProfile.Photo = UrlString;
-                    db.Entry(myUserProfile).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+
                 }
             }
             return View(myUserProfile);
+        }
+
+        private ActionResult StreamAndSavePic(MyUserProfile myUserProfile, HttpPostedFileBase file, ref byte[] bytes)
+        {
+            using (
+                Stream inputStream = file.InputStream)
+            {
+                MemoryStream memStream = inputStream as MemoryStream;
+                if (memStream == null)
+                {
+                    memStream = new MemoryStream();
+                    inputStream.CopyTo(memStream);
+                }
+                bytes = memStream.ToArray();
+                string base64String = Convert.ToBase64String(bytes);
+                string UrlString = string.Format("data:image/png;base64,{0}", base64String);
+                myUserProfile.Photo = UrlString;
+                db.Entry(myUserProfile).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
         }
 
         // GET: MyUserProfiles/Delete/5

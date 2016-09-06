@@ -27,4 +27,20 @@ namespace Ghsaa.Models
         public string Description { get; set; }
         //public DateTime UploadDate { get; set; }
     }
+    public class YTVideo
+    {
+        public YTVideo ()
+        {
+            Duration = 5;
+        }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        [Required]
+        public string VideoId { get; set; }
+        [Display(Name="Duration in Minutes")]
+        public int  Duration { get; set; }
+        public DateTime UploadDate { get; set; }
+
+        //public DateTime UploadDate { get; set; }
+    }
 }

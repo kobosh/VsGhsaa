@@ -143,7 +143,7 @@ namespace Ghsaa.Controllers
             return RedirectToAction("Index", "Message");
         }
         // GET: Message
-        [Authorize]
+      //  [Authorize]
         public ActionResult Index(int? Id, int? page)
         {
             int pageSize = 5;
